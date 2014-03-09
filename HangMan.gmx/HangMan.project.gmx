@@ -11,7 +11,6 @@
       <sprite>sprites\spr_drawable</sprite>
       <sprite>sprites\spr_button</sprite>
     </sprites>
-    <sprite>sprites\spr_control</sprite>
     <sprites name="HUD">
       <sprite>sprites\spr_title</sprite>
       <sprite>sprites\spr_wood</sprite>
@@ -22,6 +21,12 @@
       <sprite>sprites\spr_button_image</sprite>
       <sprite>sprites\spr_icons</sprite>
     </sprites>
+    <sprites name="Game">
+      <sprite>sprites\spr_letter</sprite>
+      <sprite>sprites\spr_control</sprite>
+      <sprite>sprites\spr_hangman</sprite>
+      <sprite>sprites\spr_letter_highlight</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -29,13 +34,15 @@
     <script>scripts\scr_SendMessage.gml</script>
     <script>scripts\scr_MainMenu_Create.gml</script>
     <script>scripts\scr_MainMenu_Destroy.gml</script>
+    <script>scripts\scr_Game_Create.gml</script>
+    <script>scripts\scr_Game_Destroy.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_button</font>
+    <font>fonts\fnt_letter</font>
+    <font>fonts\fnt_word</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_control</object>
-    <object>objects\obj_hud</object>
     <objects name="Engine">
       <object>objects\obj_drawable</object>
       <object>objects\obj_renderer</object>
@@ -43,12 +50,19 @@
         <object>objects\obj_button</object>
       </objects>
     </objects>
+    <object>objects\obj_control</object>
+    <object>objects\obj_hud</object>
+    <object>objects\obj_letter</object>
+    <object>objects\obj_word</object>
+    <object>objects\obj_hangman</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>
   </rooms>
-  <constants number="1">
+  <constants number="3">
     <constant name="MSG_PRESSED">1001</constant>
+    <constant name="STATE_GAME">1002</constant>
+    <constant name="STATE_MAINMENU">0</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

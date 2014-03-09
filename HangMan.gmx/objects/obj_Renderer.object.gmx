@@ -89,17 +89,6 @@ if (!surface_exists(global.g_FrameBuffer))
 {
     global.g_FrameBuffer = surface_create(global.g_FrameWidth, global.g_FrameHeight);
 }
-
-// Process message
-for (var i = 0; i &lt; ds_list_size(global.g_MessageQueue); i += 1)
-{
-    var msg = ds_list_find_value(global.g_MessageQueue, i);
-    var type = ds_map_find_value(msg, "type");
-    var data = ds_map_find_value(msg, "data");
-    
-    ds_map_destroy(msg);
-}
-ds_list_clear(global.g_MessageQueue);  
 </string>
           </argument>
         </arguments>
@@ -217,5 +206,8 @@ for (var i = 0; i &lt; ds_list_size(renderList); i += 1)
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>16,16</point>
+    <point>16,16</point>
+  </PhysicsShapePoints>
 </object>

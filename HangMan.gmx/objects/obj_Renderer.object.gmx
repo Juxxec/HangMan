@@ -61,6 +61,12 @@ global.g_ScaleY = global.g_Height / global.g_FrameHeight;
 // Create a frame buffer
 global.g_FrameBuffer = surface_create(global.g_FrameWidth, global.g_FrameHeight);
 view_surface_id[0] = global.g_FrameBuffer;
+
+// Transitions
+global.g_Fraction = 0;
+global.g_Transition = false;
+global.g_NextState = -1;
+global.g_TransitionSpeed = 0.5 / room_speed;
 </string>
           </argument>
         </arguments>
@@ -188,6 +194,34 @@ for (var i = 0; i &lt; ds_list_size(renderList); i += 1)
     {
          with (inst) { event_perform(ev_other, ev_user0); }
     }
+}
+
+if (global.g_Transition == true)
+{      
+    draw_set_color(c_black);
+    draw_set_alpha(sin(degtorad(180 * global.g_Fraction)));
+    draw_rectangle(0, 0, global.g_FrameWidth, global.g_FrameHeight, false);
+    draw_set_alpha(1);
+    draw_set_color(c_white);
+
+    if (global.g_Fraction &gt;= 0.5)
+    {
+        if (global.g_State != global.g_NextState)
+        {
+            script_execute(global.g_StateInfo[global.g_State, 1]);
+            global.g_State = global.g_NextState;
+            script_execute(global.g_StateInfo[global.g_NextState, 0]);
+        }
+    }
+    
+    if (global.g_Fraction &gt;= 1.0)
+    {
+        global.g_Transition = false;
+        global.g_Fraction = 0;
+        exit;
+    }
+    
+    global.g_Fraction += global.g_TransitionSpeed;
 }
 </string>
           </argument>

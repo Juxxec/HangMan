@@ -36,6 +36,7 @@
     <script>scripts\scr_MainMenu_Destroy.gml</script>
     <script>scripts\scr_Game_Create.gml</script>
     <script>scripts\scr_Game_Destroy.gml</script>
+    <script>scripts\scr_ChangeState.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_button</font>

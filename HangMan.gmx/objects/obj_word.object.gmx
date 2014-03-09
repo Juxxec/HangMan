@@ -28,7 +28,9 @@
             <string>event_inherited();
 
 global.g_Word = scr_GetWord(global.g_Category, global.g_Difficulty);
+//global.g_Word = "Test";
 global.g_UncoveredLetters = "";
+global.g_RightGuesses = 0;
 global.g_GuessesRemaining = 6;
 m_Font = fnt_word;
 m_FontColor = c_white;
@@ -86,24 +88,26 @@ if (global.g_GuessesRemaining &lt;= 0)
             <string>var finalString = "";
 
 var found = false;
+var cnt = 0;
 for (var i = 1; i &lt;= string_length(global.g_Word); i += 1)
 {
     if (string_count(string_upper(string_char_at(global.g_Word, i)), 
             string_upper(global.g_UncoveredLetters)) &gt; 0)
     {
         finalString += " " + string_char_at(global.g_Word, i) + " ";
-        found = true;
+        cnt += 1;
     }
     else
     {
         finalString += " _ ";
-        found = false;
     }
 }
 
-if (found == true)
+if (cnt == string_length(global.g_Word) &amp;&amp; global.g_Pause == false)
 {
-    game_end();
+    global.g_Pause = true;
+    instance_create(0, 0, obj_result);
+    //show_message("You win!");
 }
 
 draw_set_font(m_Font);

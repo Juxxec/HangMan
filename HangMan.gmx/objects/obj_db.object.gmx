@@ -65,7 +65,6 @@ else
             line = string_delete(line, 1, string_pos("name=", line) + 5);
             var cat = string_copy(line, 1, string_pos('"&gt;', line) - 1);
             ds_list_add(global.g_Categories, cat);
-            show_message(string(cat));
         }    
         
         file_text_readln(global.g_wordFileHandle);

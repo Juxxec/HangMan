@@ -46,6 +46,8 @@ script_execute(global.g_StateInfo[global.g_State, 0]);
 // The current word being guessed
 global.g_Word = "";
 
+// Has the game been paused (when a menu has appeard for example)
+global.g_Pause = false;
 
 with (instance_create(global.g_FrameWidth / 2, global.g_FrameHeight / 2, obj_categorySelect))
 {

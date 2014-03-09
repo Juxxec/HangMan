@@ -51,7 +51,8 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = 6 - global.g_GuessesRemaining;
+            <string>if (!global.g_Pause)
+    image_index = 6 - global.g_GuessesRemaining;
 </string>
           </argument>
         </arguments>

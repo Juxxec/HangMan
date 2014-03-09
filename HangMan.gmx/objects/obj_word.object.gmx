@@ -54,7 +54,10 @@ m_FontColor = c_white;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.g_GuessesRemaining &lt;= 0)
+            <string>if (global.g_Pause)
+    exit;
+
+if (global.g_GuessesRemaining &lt;= 0)
 {
     game_end();
 }

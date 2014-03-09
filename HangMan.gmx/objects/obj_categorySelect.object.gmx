@@ -58,9 +58,10 @@ m_PrevMouseX = 0;
 m_PrevMouseY = 0;
 isInit = false;
 m_Time = 0;
+m_Pressed = false;
 alarm[0] = 10;
 
-scr_GamePause();
+global.g_Pause = true;
 </string>
           </argument>
         </arguments>
@@ -106,12 +107,12 @@ scr_GamePause();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var height;
+            <string>var height = m_ItemsPerPage * m_Height;
 
 if (mouse_check_button_pressed(mb_left))
 {
     //var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
-    height = m_ItemsPerPage * m_Height;
+    
     if (mouse_x &gt;= x - m_Width / 2 * m_Scale &amp;&amp;
         mouse_x &lt;= x + m_Width / 2 * m_Scale &amp;&amp;
         mouse_y &gt;= y - height / 2 * m_Scale &amp;&amp;
@@ -119,35 +120,44 @@ if (mouse_check_button_pressed(mb_left))
     {
         m_PrevMouseY = mouse_y;
         m_Time = 0;
+        m_Pressed = true;
         exit;
     }
 }
-else if (mouse_check_button(mb_left))
+else if (mouse_check_button(mb_left) &amp;&amp; m_Pressed)
 {
     m_Time ++;
+    
     // Check how much the user has moved
     var diffy = m_PrevMouseY - mouse_y;
-    
+        
     m_Position += diffy;
-    
+        
     //var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
     height = ds_list_size(m_TextList) * m_Height;
-    
+        
     if (m_Position &lt; 0) m_Position = 0;
     if (m_Position &gt; surface_get_height(m_ListSurface) - m_ItemsPerPage * m_Height)
         m_Position = surface_get_height(m_ListSurface) - m_ItemsPerPage * m_Height;
-    
+        
     m_PrevMouseY = mouse_y;
 }
 else if (mouse_check_button_released(mb_left))
 {
-    if (m_Time &lt; 10)
+    if (mouse_x &gt;= x - m_Width / 2 * m_Scale &amp;&amp;
+        mouse_x &lt;= x + m_Width / 2 * m_Scale &amp;&amp;
+        mouse_y &gt;= y - height / 2 * m_Scale &amp;&amp;
+        mouse_y &lt;= y + height / 2 * m_Scale)
     {
-        //var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
-        height = ds_list_size(m_TextList) * m_Height;
-        var index = floor((mouse_y - y + height / 2) / m_Height);
-        show_message(string(index));
+        if (m_Time &lt; 10)
+        {
+            //var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
+            height = ds_list_size(m_TextList) * m_Height;
+            var index = (floor(m_Position / m_Height) + floor((mouse_y - y + height / 2) / m_Height)) - 1;
+            show_message(string(index));
+        }
     }
+    m_Pressed = false;
 }
 </string>
           </argument>

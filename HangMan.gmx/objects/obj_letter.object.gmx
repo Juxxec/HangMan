@@ -56,7 +56,10 @@ m_Size = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>m_Pressed = false;
+            <string>if (global.g_Pause)
+    exit;
+
+m_Pressed = false;
 
 if (mouse_check_button(mb_left))
 {

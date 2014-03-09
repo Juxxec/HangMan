@@ -40,7 +40,6 @@
     <script>scripts\scr_Game_Destroy.gml</script>
     <script>scripts\scr_ChangeState.gml</script>
     <script>scripts\scr_GetWord.gml</script>
-    <script>scripts\scr_GamePause.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_button</font>

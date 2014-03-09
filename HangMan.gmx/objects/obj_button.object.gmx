@@ -32,7 +32,7 @@ m_Id = -1;
 // Text to be displayed on the button
 m_Text = "";
 // Has the button been pressed
-m_Pressed = true;
+m_Pressed = false;
 // Font to use when drawing the text
 m_Font = -1;
 // Font color
@@ -68,11 +68,14 @@ halfHeight = sprite_get_height(m_Texture) / 2;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Check if the button was pressed
-m_Pressed = false;
-
-halfWidth = sprite_get_width(m_Texture) / 2;
+            <string>halfWidth = sprite_get_width(m_Texture) / 2;
 halfHeight = sprite_get_height(m_Texture) / 2;
+
+if (global.g_Pause)
+    exit;
+    
+// Check if the button was pressed
+m_Pressed = false;
 
 if (mouse_check_button(mb_left))
 {

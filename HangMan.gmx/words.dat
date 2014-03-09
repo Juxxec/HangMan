@@ -1,0 +1,25 @@
+<category name="Animals">
+	<difficulty value=1 count=4>
+		<word value="Breed">
+		<word value="Agile">
+		<word value="Beak">
+		<word value="Bill">
+	</difficulty>
+	<difficulty value=2 count=7>
+		<word value="Branch">
+		<word value="Buzzard">
+		<word value="Affect">
+		<word value="Animal">
+		<word value="Attract">
+		<word value="Audubon">
+		<word value="Barrier">
+	</difficulty>
+	<difficulty value=3 count=3>
+		<word value="Aerial">
+		<word value="Birdbath">
+		<word value="Backyard">
+	</difficulty>
+	<difficulty value=4 count=1>
+		<word value="Agriculture">
+	</difficulty>
+</category>

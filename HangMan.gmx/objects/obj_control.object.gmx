@@ -31,8 +31,11 @@ global.g_MessageQueue = ds_list_create();
 // Create the hud
 global.g_HUDInstance = instance_create(0, 0, obj_hud);
 
+global.g_StateInfo[0, 0] = scr_MainMenu_Create;
+global.g_StateInfo[0, 1] = scr_MainMenu_Destroy;
+
 // Create the main menu
-scr_MainMenu_Create();
+script_execute(global.g_SteteInfo[0, 0]);
 </string>
           </argument>
         </arguments>
@@ -61,6 +64,22 @@ for (var i = 0; i &lt; ds_list_size(global.g_MessageQueue); i += 1)
     var msg = ds_list_find_value(global.g_MessageQueue, i);
     var type = ds_map_find_value(msg, "type");
     var data = ds_map_find_value(msg, "data");
+    
+    switch (type)
+    {
+        case MSG_PRESSED:
+        {
+            switch (data)
+            {
+                // Button Exit Game from MainScreen
+                case 10003:
+                {
+                    if (show_question("Are you sure you want to exit?"))
+                        game_end();
+                }
+            }
+        }
+    }
     
     ds_map_destroy(msg);
 }

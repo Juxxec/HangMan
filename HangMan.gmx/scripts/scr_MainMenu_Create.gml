@@ -17,4 +17,5 @@ for (var i = 0; i < 4; i += 1)
     global.g_MenuButtons[i].m_IconImage = spr_icons;
     global.g_MenuButtons[i].m_IconIndex = i;
     global.g_MenuButtons[i].m_Texture = spr_button_image;
+    global.g_MenuButtons[i].m_Id = 10000 + i;
 }

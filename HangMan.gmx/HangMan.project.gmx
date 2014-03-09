@@ -28,6 +28,7 @@
   <scripts name="scripts">
     <script>scripts\scr_SendMessage.gml</script>
     <script>scripts\scr_MainMenu_Create.gml</script>
+    <script>scripts\scr_MainMenu_Destroy.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_button</font>

@@ -23,6 +23,7 @@
     </sprites>
     <sprites name="Game">
       <sprite>sprites\spr_letter</sprite>
+      <sprite>sprites\spr_db</sprite>
       <sprite>sprites\spr_control</sprite>
       <sprite>sprites\spr_hangman</sprite>
       <sprite>sprites\spr_letter_highlight</sprite>
@@ -37,11 +38,13 @@
     <script>scripts\scr_Game_Create.gml</script>
     <script>scripts\scr_Game_Destroy.gml</script>
     <script>scripts\scr_ChangeState.gml</script>
+    <script>scripts\scr_GetWord.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_button</font>
     <font>fonts\fnt_letter</font>
     <font>fonts\fnt_word</font>
+    <font>fonts\fnt_categories</font>
   </fonts>
   <objects name="objects">
     <objects name="Engine">

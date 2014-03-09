@@ -46,6 +46,7 @@
     <font>fonts\fnt_letter</font>
     <font>fonts\fnt_word</font>
     <font>fonts\fnt_categories</font>
+    <font>fonts\fnt_menu</font>
   </fonts>
   <objects name="objects">
     <objects name="Engine">

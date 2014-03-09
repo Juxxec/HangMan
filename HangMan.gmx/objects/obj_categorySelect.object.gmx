@@ -51,6 +51,12 @@ m_Position = 0;
 m_Border = 5;
 // Border color
 m_BorderColor = c_white;
+// Text to display above the menu
+m_Text = "";
+// The text font color
+m_TextFontColor = "";
+// Font of the text
+m_TextFont = -1;
 
 //-------------------------------------------
 // Implementation specific
@@ -154,7 +160,8 @@ else if (mouse_check_button_released(mb_left))
             //var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
             height = ds_list_size(m_TextList) * m_Height;
             var index = (floor(m_Position / m_Height) + floor((mouse_y - y + height / 2) / m_Height)) - 1;
-            show_message(string(index));
+            scr_SendMessage(MSG_PRESSED, 3000 + index);
+            //show_message(string(index));
         }
     }
     m_Pressed = false;
@@ -183,16 +190,25 @@ else if (mouse_check_button_released(mb_left))
             <kind>1</kind>
             <string>if (surface_exists(m_ListSurface))
 {
-    var height = m_Height * min(m_ItemsPerPage, ds_list_size(m_TextList));
+    var height = m_Height * min(m_ItemsPerPage, ds_list_size(m_TextList)) + m_Border;
     // Draw border
     draw_set_color(m_BorderColor);
     draw_rectangle(x - m_Width / 2 - m_Border / 2, 
-                   y - height / 2 - m_Border / 2,
+                   y - height / 2 - string_height(m_Text) - 12,
                    x + m_Width / 2 + m_Border / 2,
                    y + height / 2, false);
     
+    // Draw text
+    draw_set_color(m_TextFontColor);
+    draw_set_font(m_TextFont);
+    draw_text(x - m_Width / 2 + 5,
+              y - height / 2 - string_height(m_Text) - 6,
+              m_Text);
+              
+                   
     // Draw list menu
-    draw_set_color(c_white);
+    draw_set_color(m_FontColor);
+    draw_set_font(m_Font);
     draw_surface_part(m_ListSurface, 0, m_Position, m_Width, 
         m_ItemsPerPage * m_Height, x - m_Width / 2,
         y - height / 2);

@@ -60,12 +60,15 @@ with (instance_create(global.g_FrameWidth / 2, global.g_FrameHeight / 2, obj_cat
     
     m_Font = fnt_categories;
     m_FontColor = c_white;
-    m_Border = 2;
+    m_Border = 3;
     m_BorderColor = c_white;
     m_Color1 = make_color_rgb(233, 165, 83);
     m_Color2 = make_color_rgb(223, 123, 2);
     m_Width = 200;
     m_Height = 32;
+    m_Text = "Select Category:";
+    m_TextFontColor = c_black;
+    m_TextFont = fnt_menu;
 }
 
 </string>

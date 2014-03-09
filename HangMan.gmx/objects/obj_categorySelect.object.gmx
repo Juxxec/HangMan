@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>obj_drawable</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -45,12 +45,22 @@ m_Width = 0;
 m_Height = 0;
 // Items to show per page
 m_ItemsPerPage = 4;
+// Position in the list
+m_Position = 0;
+// Border thickness
+m_Border = 5;
+// Border color
+m_BorderColor = c_white;
 
 //-------------------------------------------
 // Implementation specific
 m_PrevMouseX = 0;
 m_PrevMouseY = 0;
-m_Pressed = false;
+isInit = false;
+m_Time = 0;
+alarm[0] = 10;
+
+scr_GamePause();
 </string>
           </argument>
         </arguments>
@@ -73,7 +83,7 @@ m_Pressed = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>m_Pressed = false;
+            <string>isInit = true;
 </string>
           </argument>
         </arguments>
@@ -96,44 +106,91 @@ m_Pressed = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button_pressed(mb_left))
+            <string>var height;
+
+if (mouse_check_button_pressed(mb_left))
 {
-    var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
+    //var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
+    height = m_ItemsPerPage * m_Height;
     if (mouse_x &gt;= x - m_Width / 2 * m_Scale &amp;&amp;
         mouse_x &lt;= x + m_Width / 2 * m_Scale &amp;&amp;
         mouse_y &gt;= y - height / 2 * m_Scale &amp;&amp;
         mouse_y &lt;= y + height / 2 * m_Scale)
     {
-        m_MousePrevY = mouse_y;
-        m_Pressed = true;
-        alarm[0] = 10;
+        m_PrevMouseY = mouse_y;
+        m_Time = 0;
+        exit;
     }
 }
-else if (mouse_check_button(mb_left) &amp;&amp; m_Pressed == false)
+else if (mouse_check_button(mb_left))
 {
+    m_Time ++;
     // Check how much the user has moved
-    var diffy = m_MousePrevY - mouse_y;
+    var diffy = m_PrevMouseY - mouse_y;
     
     m_Position += diffy;
     
-    var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
+    //var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
+    height = ds_list_size(m_TextList) * m_Height;
     
     if (m_Position &lt; 0) m_Position = 0;
-    if (m_Position &gt; surface_get_height(m_ListSurface) - height)
-        m_Position = surface_get_height(m_ListSurface) - height;
+    if (m_Position &gt; surface_get_height(m_ListSurface) - m_ItemsPerPage * m_Height)
+        m_Position = surface_get_height(m_ListSurface) - m_ItemsPerPage * m_Height;
     
-    m_MouvsePrevY = mouse_y;
+    m_PrevMouseY = mouse_y;
 }
-else if (mouse_check_button(mb_left) &amp;&amp; m_Pressed == true)
+else if (mouse_check_button_released(mb_left))
 {
-    if (m_Pressed == true)
+    if (m_Time &lt; 10)
     {
-        var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
-        show_message((mouse_y - y - height / 2) / min(m_ItemsPerPage, ds_list_size(m_TextList)));
+        //var height = min(m_ItemsPerPage, ds_list_size(m_TextList)) * m_Height;
+        height = ds_list_size(m_TextList) * m_Height;
+        var index = floor((mouse_y - y + height / 2) / m_Height);
+        show_message(string(index));
     }
-    else
-        m_Pressed = false;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (surface_exists(m_ListSurface))
+{
+    var height = m_Height * min(m_ItemsPerPage, ds_list_size(m_TextList));
+    // Draw border
+    draw_set_color(m_BorderColor);
+    draw_rectangle(x - m_Width / 2 - m_Border / 2, 
+                   y - height / 2 - m_Border / 2,
+                   x + m_Width / 2 + m_Border / 2,
+                   y + height / 2, false);
+    
+    // Draw list menu
+    draw_set_color(c_white);
+    draw_surface_part(m_ListSurface, 0, m_Position, m_Width, 
+        m_ItemsPerPage * m_Height, x - m_Width / 2,
+        y - height / 2);
+}
+
+draw_set_color(c_white);
+draw_set_font(fnt_letter);
+draw_text(0, 0, string(m_Position));
 </string>
           </argument>
         </arguments>
@@ -156,11 +213,16 @@ else if (mouse_check_button(mb_left) &amp;&amp; m_Pressed == true)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Create a surface to hold all of the items
+            <string>if (!isInit)
+    exit;
+
+var width = m_Width * m_Scale;
+//var height = m_Height * min(m_ItemsPerPage, ds_list_size(m_TextList));    
+var height = m_Height * ds_list_size(m_TextList);
+
+// Create a surface to hold all of the items
 if (!surface_exists(m_ListSurface))
 {
-    var width = m_Width * m_Scale;
-    var height = m_Height * min(m_ItemsPerPage, ds_list_size(m_TextList));
     m_ListSurface = surface_create(width, height);
 }
 
@@ -181,7 +243,7 @@ for (var j = 0; j &lt; ds_list_size(m_TextList); j ++)
                 
     draw_set_font(m_Font);
     draw_set_color(m_FontColor);
-    draw_text(5, curH + (m_Width / 2 - string_height(text) / 2) * m_Scale, text);
+    draw_text(5, curH + (m_Height / 2 - string_height(text) / 2) * m_Scale, text);
                 
     curH +=m_Height * m_Scale;
 }

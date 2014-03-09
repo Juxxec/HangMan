@@ -46,17 +46,25 @@ script_execute(global.g_StateInfo[global.g_State, 0]);
 // The current word being guessed
 global.g_Word = "";
 
-/*
-with (instance_create(100, 100, obj_categorySelect))
+
+with (instance_create(global.g_FrameWidth / 2, global.g_FrameHeight / 2, obj_categorySelect))
 {
     ds_list_add(m_TextList, "Animals");
     ds_list_add(m_TextList, "Architecture");
     ds_list_add(m_TextList, "Math");
     ds_list_add(m_TextList, "Science");
+    ds_list_add(m_TextList, "Computers");
+    ds_list_add(m_TextList, "Facebook");
+    
     m_Font = fnt_categories;
+    m_FontColor = c_white;
+    m_Border = 2;
+    m_BorderColor = c_white;
     m_Color1 = make_color_rgb(233, 165, 83);
     m_Color2 = make_color_rgb(223, 123, 2);
-}*/
+    m_Width = 200;
+    m_Height = 32;
+}
 
 </string>
           </argument>
@@ -157,5 +165,8 @@ ds_list_clear(global.g_MessageQueue);
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>0,0</point>
+    <point>16,16</point>
+  </PhysicsShapePoints>
 </object>

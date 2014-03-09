@@ -28,6 +28,7 @@
       <sprite>sprites\spr_wood</sprite>
       <sprite>sprites\spr_blackboard</sprite>
     </sprites>
+    <sprite>sprites\sprite14</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -39,6 +40,7 @@
     <script>scripts\scr_Game_Destroy.gml</script>
     <script>scripts\scr_ChangeState.gml</script>
     <script>scripts\scr_GetWord.gml</script>
+    <script>scripts\scr_GamePause.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_button</font>
@@ -60,7 +62,7 @@
     <object>objects\obj_word</object>
     <object>objects\obj_hangman</object>
     <object>objects\obj_db</object>
-    <object>objects\object9</object>
+    <object>objects\obj_categorySelect</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>

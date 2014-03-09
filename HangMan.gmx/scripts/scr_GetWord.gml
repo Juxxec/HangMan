@@ -91,7 +91,6 @@ while (!file_text_eof(global.g_wordFileHandle))
     if (diffFound && catFound)
     {
         var index = floor(random(count));
-        show_message(string(index) + " " + string(count));
         // Choose a random word
         for (var j = 0; j < index; j ++)
         {

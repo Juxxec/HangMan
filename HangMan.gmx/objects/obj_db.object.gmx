@@ -29,13 +29,17 @@
 // It will update the word file and will load words from it.
 
 // Word file depending on the current locale
-global.g_wordFilePath = working_directory + "words.dat";
+//global.g_wordFilePath = working_directory + "words.dat";
+global.g_wordFilePath = get_open_filename("*.*", "words.dat");
 
 // List of word categories
 global.g_Categories = ds_list_create();
 
-// Create a list of categories
-global.g_Categories = ds_list_create();
+// Current category selected
+global.g_Category = "";
+
+// Current difficulty
+global.g_Difficulty = 2
 
 // Check if we have a word file
 global.g_wordFileHandle = file_text_open_read(global.g_wordFilePath);
@@ -59,8 +63,9 @@ else
         if (string_count("&lt;category name=", line) &gt; 0)
         {
             line = string_delete(line, 1, string_pos("name=", line) + 5);
-            var word = string_copy(line, 1, string_pos('"&gt;', line) - 1);
-            ds_list_add(global.g_Categories, word);
+            var cat = string_copy(line, 1, string_pos('"&gt;', line) - 1);
+            ds_list_add(global.g_Categories, cat);
+            show_message(string(cat));
         }    
         
         file_text_readln(global.g_wordFileHandle);

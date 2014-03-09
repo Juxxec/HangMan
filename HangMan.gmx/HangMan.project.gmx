@@ -21,6 +21,8 @@
       <sprite>sprites\spr_db</sprite>
       <sprite>sprites\spr_control</sprite>
       <sprite>sprites\spr_letter_highlight</sprite>
+      <sprite>sprites\spr_dropdown</sprite>
+      <sprite>sprites\spr_word</sprite>
     </sprites>
     <sprites name="HUD">
       <sprite>sprites\spr_hud</sprite>
@@ -28,7 +30,6 @@
       <sprite>sprites\spr_wood</sprite>
       <sprite>sprites\spr_blackboard</sprite>
     </sprites>
-    <sprite>sprites\sprite14</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -56,18 +57,21 @@
         <object>objects\obj_button</object>
       </objects>
     </objects>
-    <object>objects\obj_control</object>
-    <object>objects\obj_hud</object>
-    <object>objects\obj_letter</object>
-    <object>objects\obj_word</object>
-    <object>objects\obj_hangman</object>
-    <object>objects\obj_db</object>
-    <object>objects\obj_categorySelect</object>
+    <objects name="Game">
+      <object>objects\obj_control</object>
+      <object>objects\obj_hud</object>
+      <object>objects\obj_letter</object>
+      <object>objects\obj_db</object>
+      <object>objects\obj_categorySelect</object>
+      <object>objects\obj_word</object>
+      <object>objects\obj_hangman</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>
   </rooms>
-  <constants number="3">
+  <constants number="4">
+    <constant name="MSG_CATEGORY">1002</constant>
     <constant name="MSG_PRESSED">1001</constant>
     <constant name="STATE_GAME">1002</constant>
     <constant name="STATE_MAINMENU">0</constant>

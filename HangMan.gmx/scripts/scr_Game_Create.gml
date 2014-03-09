@@ -39,3 +39,5 @@ for (i = 1; i <= string_length(global.g_Alphabet); i++)
     global.g_Letters[i].m_Size      = m_LetterSize;
     global.g_Letters[i].m_Font      = fnt_letter;
 }
+
+global.g_Pause = false;

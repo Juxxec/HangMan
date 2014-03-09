@@ -49,28 +49,6 @@ global.g_Word = "";
 // Has the game been paused (when a menu has appeard for example)
 global.g_Pause = false;
 
-with (instance_create(global.g_FrameWidth / 2, global.g_FrameHeight / 2, obj_categorySelect))
-{
-    ds_list_add(m_TextList, "Animals");
-    ds_list_add(m_TextList, "Architecture");
-    ds_list_add(m_TextList, "Math");
-    ds_list_add(m_TextList, "Science");
-    ds_list_add(m_TextList, "Computers");
-    ds_list_add(m_TextList, "Facebook");
-    
-    m_Font = fnt_categories;
-    m_FontColor = c_white;
-    m_Border = 3;
-    m_BorderColor = c_white;
-    m_Color1 = make_color_rgb(233, 165, 83);
-    m_Color2 = make_color_rgb(223, 123, 2);
-    m_Width = 200;
-    m_Height = 32;
-    m_Text = "Select Category:";
-    m_TextFontColor = c_black;
-    m_TextFont = fnt_menu;
-}
-
 </string>
           </argument>
         </arguments>
@@ -109,7 +87,26 @@ for (var i = 0; i &lt; ds_list_size(global.g_MessageQueue); i += 1)
                 // Button New Game from Main Menu
                 case 10000:
                 {
-                    scr_ChangeState(STATE_GAME);
+                    global.g_Pause = true;
+                    global.g_CategorySelectInstance = instance_create(global.g_FrameWidth / 2, 
+                        global.g_FrameHeight / 2, obj_categorySelect);
+                    with (global.g_CategorySelectInstance)
+                    {
+                        ds_list_copy(m_TextList, global.g_Categories);
+                        
+                        m_Font = fnt_categories;
+                        m_FontColor = c_white;
+                        m_Border = 3;
+                        m_BorderColor = c_white;
+                        m_Color1 = make_color_rgb(233, 165, 83);
+                        m_Color2 = make_color_rgb(223, 123, 2);
+                        m_Width = 200;
+                        m_Height = 32;
+                        m_Text = "Select Category:";
+                        m_TextFontColor = c_black;
+                        m_TextFont = fnt_menu;
+                    }
+                    //scr_ChangeState(STATE_GAME);
                     break;
                 }
                 
@@ -123,6 +120,18 @@ for (var i = 0; i &lt; ds_list_size(global.g_MessageQueue); i += 1)
                 }
             }
             
+            break;
+        }
+        
+        case MSG_CATEGORY:
+        {
+            //show_message(ds_list_find_value(global.g_Categories, data - 3000));
+            global.g_Category = ds_list_find_value(global.g_Categories, data - 3000);
+            global.g_Diffictulty = get_integer("Select difficulty (1 - Easy, 2 - Medium, 3 - Hard," +
+                    " 4 - Extreme)", 2);
+            if (global.g_Difficulty &lt; 1 || global.g_Difficulty &gt; 4)
+                global.g_Difficulty = 2;
+            scr_ChangeState(STATE_GAME);
             break;
         }
     }

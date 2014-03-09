@@ -7,15 +7,9 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="Engine">
-      <sprite>sprites\spr_render</sprite>
-      <sprite>sprites\spr_drawable</sprite>
       <sprite>sprites\spr_button</sprite>
-    </sprites>
-    <sprites name="HUD">
-      <sprite>sprites\spr_title</sprite>
-      <sprite>sprites\spr_wood</sprite>
-      <sprite>sprites\spr_blackboard</sprite>
-      <sprite>sprites\spr_hud</sprite>
+      <sprite>sprites\spr_drawable</sprite>
+      <sprite>sprites\spr_render</sprite>
     </sprites>
     <sprites name="GUI">
       <sprite>sprites\spr_button_image</sprite>
@@ -23,10 +17,16 @@
     </sprites>
     <sprites name="Game">
       <sprite>sprites\spr_letter</sprite>
+      <sprite>sprites\spr_hangman</sprite>
       <sprite>sprites\spr_db</sprite>
       <sprite>sprites\spr_control</sprite>
-      <sprite>sprites\spr_hangman</sprite>
       <sprite>sprites\spr_letter_highlight</sprite>
+    </sprites>
+    <sprites name="HUD">
+      <sprite>sprites\spr_hud</sprite>
+      <sprite>sprites\spr_title</sprite>
+      <sprite>sprites\spr_wood</sprite>
+      <sprite>sprites\spr_blackboard</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background"/>
@@ -59,6 +59,8 @@
     <object>objects\obj_letter</object>
     <object>objects\obj_word</object>
     <object>objects\obj_hangman</object>
+    <object>objects\obj_db</object>
+    <object>objects\object9</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>

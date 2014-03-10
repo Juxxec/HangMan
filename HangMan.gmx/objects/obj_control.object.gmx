@@ -84,10 +84,22 @@ for (var i = 0; i &lt; ds_list_size(global.g_MessageQueue); i += 1)
         {
             switch (data)
             {
+                case 4000:
+                {
+                    scr_Game_Destroy();
+                    scr_Game_Create();
+                    break;
+                }
+                
                 // Button New Game from Main Menu
                 case 10000:
                 {
-                    global.g_Pause = true;
+                    // Pause the buttons
+                    for (var i = 0; i &lt; 4; i ++)
+                        with (global.g_MenuButtons[i])
+                            m_Paused = true;
+                    
+                    // Show the user a menu so that he can select a category        
                     global.g_CategorySelectInstance = instance_create(global.g_FrameWidth / 2, 
                         global.g_FrameHeight / 2, obj_categorySelect);
                     with (global.g_CategorySelectInstance)

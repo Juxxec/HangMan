@@ -51,7 +51,7 @@ halfHeight = sprite_get_height(m_Texture) / 2;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="7" enumb="11">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -70,9 +70,6 @@ halfHeight = sprite_get_height(m_Texture) / 2;
             <kind>1</kind>
             <string>halfWidth = sprite_get_width(m_Texture) / 2;
 halfHeight = sprite_get_height(m_Texture) / 2;
-
-if (global.g_Pause)
-    exit;
     
 // Check if the button was pressed
 m_Pressed = false;
@@ -125,8 +122,11 @@ if (mouse_check_button_released(mb_left))
 draw_sprite_ext(m_Texture, m_Pressed, x, y, m_Scale, m_Scale, 0, c_white, m_Alpha);
 
 // Draw the icon
-var xx = x - halfWidth + sprite_get_width(m_IconImage) / 2 + 5;
-draw_sprite_ext(m_IconImage, m_IconIndex, xx, y, m_Scale, m_Scale, 0, c_white, m_Alpha);
+if (m_IconImage != -1)
+{
+    var xx = x - halfWidth + sprite_get_width(m_IconImage) / 2 + 5;
+    draw_sprite_ext(m_IconImage, m_IconIndex, xx, y, m_Scale, m_Scale, 0, c_white, m_Alpha);
+}
 
 // Draw button text
 xx = x + sprite_get_width(m_IconImage) - halfWidth + 20;

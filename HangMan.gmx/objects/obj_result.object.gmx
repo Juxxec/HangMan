@@ -37,6 +37,19 @@ m_bCouting = true;
 m_currentScore = 0;
 
 global.g_Score = (global.g_RightGuesses - (6 - global.g_GuessesRemaining)) * 100;
+
+global.g_NewGame = instance_create(global.g_FrameWidth / 2, 
+                        global.g_FrameHeight / 2 + sprite_get_height(spr_result) / 2 + 10,
+                        obj_button);
+                        
+with (global.g_NewGame)
+{
+    m_Text = "Next Word";
+    m_Font = fnt_result;
+    m_FontColor = c_white;
+    m_Texture = spr_smallButton;
+    m_Id = 4000;
+}
 </string>
           </argument>
         </arguments>
@@ -76,7 +89,7 @@ global.g_Score = (global.g_RightGuesses - (6 - global.g_GuessesRemaining)) * 100
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="7" enumb="11">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -97,9 +110,9 @@ global.g_Score = (global.g_RightGuesses - (6 - global.g_GuessesRemaining)) * 100
 {
     m_currentScore += m_scoreCountSpeed;
         
-    if (m_currentScore &gt;= m_totalScore)
+    if (m_currentScore &gt;= global.g_Score)
     {
-        m_currentScore = m_totalScore;
+        m_currentScore = global.g_Score;
         m_bCounting = false;
     }
 }
@@ -130,7 +143,7 @@ global.g_Score = (global.g_RightGuesses - (6 - global.g_GuessesRemaining)) * 100
             <string>draw_sprite_ext(spr_result, 0, 
                      global.g_FrameWidth / 2,
                      global.g_FrameHeight / 2, 
-                     m_Scale, m_Scale, 0, c_white, 1);
+                     m_Scale, m_Scale, 5, c_white, 1);
                      
 if (m_Scale == 1.0)
 {
@@ -157,7 +170,7 @@ if (m_Scale == 1.0)
             draw_sprite(spr_stars, 1, global.g_FrameWidth / 2 - 97 + i * 45, global.g_FrameHeight / 2 + 45);
         else
             draw_sprite(spr_stars, 0, global.g_FrameWidth / 2 - 97 + i * 45, global.g_FrameHeight / 2 + 45);
-        }
+    }
 }
 </string>
           </argument>

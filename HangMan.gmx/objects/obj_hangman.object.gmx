@@ -34,7 +34,7 @@ image_speed = 0;
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="7" enumb="11">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -51,8 +51,7 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!global.g_Pause)
-    image_index = 6 - global.g_GuessesRemaining;
+            <string>image_index = 6 - global.g_GuessesRemaining;
 </string>
           </argument>
         </arguments>

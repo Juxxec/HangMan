@@ -28,6 +28,7 @@
             <string>m_Alpha = 1.0;
 m_Scale = 1.0;
 m_Texture = -1;
+m_Paused = false;
 </string>
           </argument>
         </arguments>
@@ -45,5 +46,8 @@ m_Texture = -1;
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>0,0</point>
+    <point>16,16</point>
+  </PhysicsShapePoints>
 </object>

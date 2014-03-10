@@ -33,6 +33,7 @@
       <sprite>sprites\spr_hud</sprite>
       <sprite>sprites\spr_stars</sprite>
     </sprites>
+    <sprite>sprites\spr_smallButton</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -69,8 +70,8 @@
       <object>objects\obj_categorySelect</object>
       <object>objects\obj_word</object>
       <object>objects\obj_hangman</object>
+      <object>objects\obj_result</object>
     </objects>
-    <object>objects\obj_result</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>

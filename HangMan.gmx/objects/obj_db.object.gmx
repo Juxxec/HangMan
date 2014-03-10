@@ -30,7 +30,9 @@
 
 // Word file depending on the current locale
 //global.g_wordFilePath = working_directory + "words.dat";
-global.g_wordFilePath = get_open_filename("*.*", "words.dat");
+//global.g_wordFilePath = get_open_filename("*.*", "words.dat");
+
+global.g_wordFilePath = "/storage/emulated/0/words.dat"
 
 // List of word categories
 global.g_Categories = ds_list_create();
@@ -51,6 +53,7 @@ if (global.g_wordFileHandle == -1)
     {
         show_message("Error creating word database file! Access denied or media was removed!");
         game_end();
+        exit;
     }
     
     file_text_close(file);

@@ -174,7 +174,7 @@ for (var i = 0; i &lt; instance_number(obj_drawable); i += 1)
     var inst = instance_find(obj_drawable, i);
     
     // If it is visible add it to the list
-    if (inst.visible == true &amp;&amp; inst.m_Alpha &gt; 0.0)
+    if (inst.m_Alpha &gt; 0.0)
         ds_list_add(renderList, instance_find(obj_drawable, i));
 }
 
@@ -192,7 +192,10 @@ for (var i = 0; i &lt; ds_list_size(renderList); i += 1)
     // Render the instance
     if (instance_exists(inst))
     {
-         with (inst) { event_perform(ev_other, ev_user0); }
+        if (inst.m_Paused == false)
+            with (inst) { event_perform(ev_other, ev_user1); }
+            
+        with (inst) { event_perform(ev_other, ev_user0); }
     }
 }
 
@@ -240,5 +243,8 @@ if (global.g_Transition == true)
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>0,0</point>
+    <point>16,16</point>
+  </PhysicsShapePoints>
 </object>
